@@ -10,7 +10,7 @@
 </head>
 
 <body>
-<div th:replace="header :: header"></div>
+<div th:replace="~{header :: header}"></div>
 
 <section class="w3l-banner py-5" id="home">
     <div class="banner-content">
@@ -21,7 +21,7 @@
                     </h3>
                     <p class="banner-sub">Active Learning, Expert Teachers & Safe Environment</p>
                     <div class="d-flex align-items-center buttons-banner">
-                        <a class="btn btn-style mt-lg-5 mt-4">Admission Now</a>
+                        <a class="btn btn-style mt-lg-5 mt-4" th:href="@{/contact}">Admission Now</a>
                     </div>
                 </div>
                 <div class="col-md-6 right-banner-2 text-end position-relative mt-md-0 mt-5">
@@ -100,7 +100,7 @@
                     <li><i class="fas fa-check-circle"></i>Access more than 100K online courses</li>
                     <li><i class="fas fa-check-circle"></i>Traditional Academies</li>
                 </ul>
-                <a class="btn btn-style mt-5">Apply Now</a>
+                <a class="btn btn-style mt-5" th:href="@{/contact}">Apply Now</a>
             </div>
         </div>
     </div>
@@ -115,12 +115,12 @@
         <div class="row content23-col-2 text-center">
             <div class="col-md-6">
                 <div class="content23-grid content23-grid1">
-                    <h4><a>Expert Teachers</a></h4>
+                    <h4><a th:href="@{/about}">Expert Teachers</a></h4>
                 </div>
             </div>
             <div class="col-md-6 mt-md-0 mt-4">
                 <div class="content23-grid content23-grid2">
-                    <h4><a>Safe Environment</a></h4>
+                    <h4><a th:href="@{/about}">Safe Environment</a></h4>
                 </div>
             </div>
         </div>
@@ -251,7 +251,7 @@
                             </ul>
                         </div>
                         <h4><a>Educational Programs</a></h4>
-                        <p>Educations programmes covering core concepts of Maths,
+                        <p>Education programmes cover core concepts of Maths,
                             English, Science.</p>
                     </div>
                 </div>
@@ -273,7 +273,7 @@
                         </div>
                         <h4><a>Best Meditation Classes</a></h4>
                         <p>Special program focusing the meditation to encourage students
-                            from early age.</p>
+                            from an early age.</p>
                     </div>
                 </div>
             </div>
@@ -300,7 +300,7 @@
             </div>
         </div>
         <div class="text-center mt-sm-5 mt-4 pt-sm-0 pt-1">
-            <a class="btn btn-style btn-style-secondary mt-sm-3">
+            <a class="btn btn-style btn-style-secondary mt-sm-3" th:href="@{/courses}">
                 Browse more courses</a>
         </div>
     </div>
@@ -318,7 +318,7 @@
                     <li class="phone-sec me-lg-4"><i class="fas fa-phone-volume"></i>
                         <a class="call-style-w3" href="tel:+1(23) 456 789 0000">+1(23) 673 458 1111</a>
                     </li>
-                    <li><a class="btn btn-style btn-style-2 mt-lg-0 mt-3">Join for free</a>
+                    <li><a class="btn btn-style btn-style-2 mt-lg-0 mt-3" th:href="@{/contact}">Join for free</a>
                     </li>
                 </ul>
             </div>
@@ -326,7 +326,7 @@
     </div>
 </section>
 
-<div th:replace="footer :: footer"></div>
+<div th:replace="~{footer :: footer}"></div>
 
 <button id="movetop" onclick="topFunction()" title="Go to top">
     <span aria-hidden="true" class="fas fa-level-up-alt"></span>
