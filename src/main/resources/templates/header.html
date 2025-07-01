@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Header</title>
+</head>
+<body>
+<header class="fixed-top" id="site-header">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" th:href="@{/}"><i class="fas fa-graduation-cap"></i>Prime School
+            </a>
+            <button aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation"
+                    class="navbar-toggler collapsed" data-bs-target="#navbarScroll" data-bs-toggle="collapse"
+                    type="button">
+                <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarScroll">
+                <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll">
+                    <li class="nav-item">
+                        <a aria-current="page" class="nav-link active" th:href="@{/}">Home</a>
+                    </li>
+                    <li class="nav-item" th:href="@{/courses}">
+                        <a class="nav-link" th:href="@{/contact}">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">Contact</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="cont-ser-position">
+                <nav class="navigation">
+                    <div class="theme-switch-wrapper">
+                        <label class="theme-switch" for="checkbox">
+                            <input id="checkbox" type="checkbox">
+                            <div class="mode-container">
+                                <i class="gg-sun"></i>
+                                <i class="gg-moon"></i>
+                            </div>
+                        </label>
+                    </div>
+                </nav>
+            </div>
+
+        </nav>
+    </div>
+</header>
+</body>
+</html>
