@@ -32,26 +32,31 @@
         </div>
         <div class="row contact-block">
             <div class="col-md-7 contact-right">
-                <form class="signin-form" method="post" th:action="@{/saveMsg}">
+                <form class="signin-form" method="post" th:action="@{/saveMsg}" th:object="${contact}">
                     <div class="input-grids">
                         <div class="row">
                             <div class="col-sm-6">
-                                <input class="contact-input" id="name" name="name" placeholder="Your Name"
+                                <input class="contact-input" placeholder="Your Name" required th:field="*{name}"
                                        type="text"/>
+                                <div class="error-message" th:errors="*{name}"
+                                     th:if="${#fields.hasErrors('name')}"></div>
                             </div>
                             <div class="col-sm-6">
-                                <input class="contact-input" id="mobileNum" name="mobileNum"
-                                       placeholder="Your Mobile Number"
+                                <input class="contact-input" placeholder="Your Mobile Number" th:field="*{mobileNum}"
                                        type="text"/>
+                                <div class="error-message" th:errors="*{mobileNum}"
+                                     th:if="${#fields.hasErrors('mobileNum')}"></div>
                             </div>
                         </div>
-                        <input class="contact-input" id="email" name="email" placeholder="Your Email"
-                               type="text"/>
-                        <input class="contact-input" id="subject" name="subject" placeholder="Subject"
-                               type="text"/>
+                        <input class="contact-input" placeholder="Your Email" required th:field="*{email}"
+                               type="email"/>
+                        <div class="error-message" th:errors="*{email}" th:if="${#fields.hasErrors('email')}"></div>
+                        <input class="contact-input" placeholder="Subject" th:field="*{subject}" type="text"/>
+                        <div class="error-message" th:errors="*{subject}" th:if="${#fields.hasErrors('subject')}"></div>
                     </div>
                     <div class="form-input">
-                        <textarea id="message" name="message" placeholder="Type your message here"></textarea>
+                        <textarea placeholder="Type your message here" th:field="*{message}"></textarea>
+                        <div class="error-message" th:errors="*{message}" th:if="${#fields.hasErrors('message')}"></div>
                     </div>
                     <div class="text-start">
                         <button class="btn btn-style btn-style-3">Send Message</button>

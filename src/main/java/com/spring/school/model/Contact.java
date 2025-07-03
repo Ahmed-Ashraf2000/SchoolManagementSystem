@@ -1,60 +1,25 @@
 package com.spring.school.model;
 
+import jakarta.validation.constraints.*;
+import lombok.Data;
+
+@Data
 public class Contact {
+    @NotNull
+    @Size(min = 1, max = 15, message = "Name must be between 1 and 15 characters")
     private String name;
+
+    @Pattern(regexp = "^[0-9]{10,15}$", message = "Mobile number should be 10-15 digits")
     private String mobileNum;
+
+    @NotNull
+    @Email(message = "Please provide a valid email address")
+    @Size(max = 100, message = "Email must not exceed 100 characters")
     private String email;
+
+    @Size(max = 100, message = "Subject must not exceed 100 characters")
     private String subject;
+
+    @Size(max = 500, message = "Message must not exceed 500 characters")
     private String message;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getMobileNum() {
-        return mobileNum;
-    }
-
-    public void setMobileNum(String mobileNum) {
-        this.mobileNum = mobileNum;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getSubject() {
-        return subject;
-    }
-
-    public void setSubject(String subject) {
-        this.subject = subject;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    @Override
-    public String toString() {
-        return "Message{" +
-               "name='" + name + '\'' +
-               ", mobileNum='" + mobileNum + '\'' +
-               ", email='" + email + '\'' +
-               ", subject='" + subject + '\'' +
-               ", message='" + message + '\'' +
-               '}';
-    }
 }
