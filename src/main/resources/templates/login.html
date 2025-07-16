@@ -30,25 +30,29 @@
         <div class="title-main text-center mx-auto mb-md-5 mb-4" style="max-width:500px;">
             <h3 class="title-style">LogIn</h3>
         </div>
-        <div class="row login-block">
+        <div class="row login-block justify-content-center">
             <div class="col-md-6 login-center">
-                <div class="alert" role="alert" th:if="${param.error}">
+                <div class="alert alert-danger" role="alert" th:if="${param.error}">
                     Invalid username or password.
                 </div>
-                <div class="alert" role="alert" style="background-color: #4CAF50;" th:if="${param.logout}">
+                <div class="alert alert-danger" role="alert" style="background-color: #4CAF50;" th:if="${param.logout}">
                     You have been logged out.
                 </div>
-                <form class="signin-form" method="post" th:action="@{/authenticateTheUser}">
-                    <div class="col-md-8 login-center input-grids">
-                        <li class="alert alert-danger" role="alert" th:if="${!#strings.isEmpty(errorMessge)}"
-                            th:text="${errorMessge}"/>
-                        <input class="login-input" id="username" name="username" placeholder="Username"
-                               type="text"/>
-                        <input class="login-input" id="password" name="password" placeholder="Password"
-                               type="password"/>
+                <form class="signin-form" method="POST" th:action="@{/authenticateTheUser}">
+                    <div class="login-center input-grids">
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="username" name="username"
+                                   placeholder="Username" required type="text"/>
+                            <label for="username">Username</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="password" name="password"
+                                   placeholder="Password" required type="password"/>
+                            <label for="password">Password</label>
+                        </div>
                     </div>
                     <div class="col-md-8 login-center text-start">
-                        <button class="btn btn-style btn-style-3 text-left">Log In</button>
+                        <button class="btn btn-style btn-style-3 text-left" type="submit">Log In</button>
                         <a class="new-user text-right" href="">New User ?</a>
                     </div>
                 </form>

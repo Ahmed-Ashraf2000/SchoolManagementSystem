@@ -30,7 +30,7 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .formLogin(
-                        from -> from.loginPage("/login").loginProcessingUrl("authenticateTheUser")
+                        from -> from.loginPage("/login").loginProcessingUrl("/authenticateTheUser")
                                 .defaultSuccessUrl("/dashboard")
                                 .permitAll())
                 .logout(LogoutConfigurer::permitAll)
