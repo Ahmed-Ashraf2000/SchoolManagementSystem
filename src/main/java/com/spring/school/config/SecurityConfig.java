@@ -26,7 +26,6 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/courses").permitAll()
                         .requestMatchers(HttpMethod.GET, "/about").permitAll()
                         .requestMatchers(HttpMethod.GET, "/assets/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/dashboard").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(
@@ -36,7 +35,8 @@ public class SecurityConfig {
                 .logout(LogoutConfigurer::permitAll)
                 .exceptionHandling(configurer -> configurer.accessDeniedPage("/access-denied"))
                 .httpBasic(Customizer.withDefaults())
-                .csrf(AbstractHttpConfigurer::disable);
+                .csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.ignoringRequestMatchers(
+                        "/saveMsg"));
 
         return http.build();
     }
