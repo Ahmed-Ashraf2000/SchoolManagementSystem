@@ -57,7 +57,7 @@ public class Contact {
     @CreatedBy
     @Column(name = "created_by", nullable = false, updatable = false)
     private String createdBy;
-    
+
     @LastModifiedDate
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
@@ -69,7 +69,7 @@ public class Contact {
     public Contact() {
     }
 
-    enum Status {
+    public enum Status {
         OPEN, CLOSED
     }
 }

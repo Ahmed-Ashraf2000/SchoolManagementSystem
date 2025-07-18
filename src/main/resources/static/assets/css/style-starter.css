@@ -21191,3 +21191,7 @@ h4.inner-text-title {
 .contact-input.error, textarea.error {
     border-color: #dc3545;
 }
+
+.msg-table td {
+    color: grey;
+}

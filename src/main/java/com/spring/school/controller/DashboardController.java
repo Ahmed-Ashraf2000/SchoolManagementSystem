@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class DashboardController {
 
+
     @GetMapping("/dashboard")
     public String displayDashboard(Model model, Authentication authentication) {
         model.addAttribute("username", authentication.getName());

@@ -1,9 +1,9 @@
 package com.spring.school.repository;
 
-import com.spring.school.model.Contact;
+import com.spring.school.model.Holiday;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ContactRepository extends JpaRepository<Contact, Integer> {
+public interface HolidayRepository extends JpaRepository<Holiday, Integer> {
 }
