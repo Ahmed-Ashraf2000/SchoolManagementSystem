@@ -21195,3 +21195,7 @@ h4.inner-text-title {
 .msg-table td {
     color: grey;
 }
+
+.row {
+    justify-content: center;
+}

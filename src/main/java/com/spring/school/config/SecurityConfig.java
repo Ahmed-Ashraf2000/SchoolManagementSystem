@@ -5,10 +5,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+
+import javax.sql.DataSource;
 
 @Configuration
 public class SecurityConfig {
@@ -23,6 +26,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/saveMsg").permitAll()
                         .requestMatchers(HttpMethod.GET, "/courses").permitAll()
                         .requestMatchers(HttpMethod.GET, "/about").permitAll()
+                        .requestMatchers("/public/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/login").permitAll()
                         .requestMatchers(HttpMethod.GET, "/logout").permitAll()
                         .requestMatchers(HttpMethod.GET, "/dashboard").authenticated()
@@ -48,19 +52,30 @@ public class SecurityConfig {
                 .exceptionHandling(configurer -> configurer.accessDeniedPage("/access-denied"))
                 .httpBasic(Customizer.withDefaults())
                 .csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.ignoringRequestMatchers(
-                        "/saveMsg"));
+                        "/saveMsg").ignoringRequestMatchers("/public/createUser"));
 
         return http.build();
     }
 
     @Bean
-    public InMemoryUserDetailsManager userDetailsManager() {
-        UserDetails user =
-                User.withUsername("user").password("{noop}12345").roles("USER").build();
+    UserDetailsManager userDetailsManager(DataSource dataSource) {
+        JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
 
-        UserDetails admin =
-                User.withUsername("admin").password("{noop}12345").roles("USER", "ADMIN").build();
+        jdbcUserDetailsManager.setUsersByUsernameQuery(
+                "SELECT user_name, password, active FROM users WHERE user_name = ?");
 
-        return new InMemoryUserDetailsManager(user, admin);
+        jdbcUserDetailsManager.setAuthoritiesByUsernameQuery(
+                "SELECT u.user_name, CONCAT('ROLE_', r.role_name) as authority " +
+                "FROM users u " +
+                "JOIN user_roles ur ON u.user_id = ur.user_id " +
+                "JOIN roles r ON ur.role_id = r.role_id " +
+                "WHERE u.user_name = ?");
+
+        return jdbcUserDetailsManager;
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }
