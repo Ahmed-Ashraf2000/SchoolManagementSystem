@@ -42,6 +42,9 @@ public class User extends BaseEntity {
     @Column(name = "email", unique = true)
     private String email;
 
+    @Column(name = "active")
+    private boolean active = true;
+
     @NotBlank(message = "Confirm email is required")
     @Email(message = "Please provide a valid confirmation email")
     @Transient

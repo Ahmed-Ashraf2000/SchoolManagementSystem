@@ -58,23 +58,6 @@ public class SecurityConfig {
     }
 
     @Bean
-    UserDetailsManager userDetailsManager(DataSource dataSource) {
-        JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
-
-        jdbcUserDetailsManager.setUsersByUsernameQuery(
-                "SELECT user_name, password, active FROM users WHERE user_name = ?");
-
-        jdbcUserDetailsManager.setAuthoritiesByUsernameQuery(
-                "SELECT u.user_name, CONCAT('ROLE_', r.role_name) as authority " +
-                "FROM users u " +
-                "JOIN user_roles ur ON u.user_id = ur.user_id " +
-                "JOIN roles r ON ur.role_id = r.role_id " +
-                "WHERE u.user_name = ?");
-
-        return jdbcUserDetailsManager;
-    }
-
-    @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
