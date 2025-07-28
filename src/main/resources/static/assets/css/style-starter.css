@@ -21199,3 +21199,8 @@ h4.inner-text-title {
 .row {
     justify-content: center;
 }
+
+.control-label:after {
+    content: "*";
+    color: red;
+}

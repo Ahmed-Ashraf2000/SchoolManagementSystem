@@ -1,7 +1,9 @@
 package com.spring.school.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
@@ -31,16 +33,17 @@ public class Address extends BaseEntity {
     @Column(name = "address2")
     private String address2;
 
-    @NotBlank(message = "ZIP code is required")
+    @NotNull(message = "ZIP code is required")
+    @Min(value = 1, message = "ZIP code must be positive")
     @Column(name = "zip_code")
-    private String zipCode;
+    private int zipCode;
 
     @NotBlank(message = "City is required")
-    @Column(nullable = false)
+    @Column(name = "city", nullable = false)
     private String city;
 
     @NotBlank(message = "State is required")
-    @Column(nullable = false)
+    @Column(name = "state", nullable = false)
     private String state;
 
 }

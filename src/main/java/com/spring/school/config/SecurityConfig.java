@@ -7,8 +7,6 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.JdbcUserDetailsManager;
-import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 import javax.sql.DataSource;
@@ -30,6 +28,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/login").permitAll()
                         .requestMatchers(HttpMethod.GET, "/logout").permitAll()
                         .requestMatchers(HttpMethod.GET, "/dashboard").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/displayProfile").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/updateProfile").authenticated()
                         .requestMatchers(HttpMethod.GET, "/displayMessages").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/closeMsg/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/assets/**").permitAll()

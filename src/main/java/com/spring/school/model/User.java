@@ -2,6 +2,7 @@ package com.spring.school.model;
 
 import com.spring.school.annotation.FieldsValueMatch;
 import com.spring.school.annotation.PasswordValidator;
+import com.spring.school.validation.ValidationGroups;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;
@@ -18,12 +19,14 @@ import java.util.Set;
         @FieldsValueMatch(
                 field = "email",
                 fieldToMatch = "confirmEmail",
-                message = "Email addresses must match"
+                message = "Email addresses must match",
+                groups = ValidationGroups.Registration.class
         ),
         @FieldsValueMatch(
                 field = "password",
                 fieldToMatch = "confirmPassword",
-                message = "Passwords must match"
+                message = "Passwords must match",
+                groups = ValidationGroups.Registration.class
         )
 })
 public class User extends BaseEntity {
