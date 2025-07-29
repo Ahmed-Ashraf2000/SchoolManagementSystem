@@ -71,6 +71,10 @@ public class User extends BaseEntity {
     @JoinColumn(name = "address_id")
     private Address address;
 
+    @ManyToOne
+    @JoinColumn(name = "class_id")
+    private PrimeClass primeClass;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_roles",

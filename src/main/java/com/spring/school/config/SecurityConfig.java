@@ -9,7 +9,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import javax.sql.DataSource;
 
 @Configuration
 public class SecurityConfig {
@@ -31,6 +30,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/displayProfile").authenticated()
                         .requestMatchers(HttpMethod.POST, "/updateProfile").authenticated()
                         .requestMatchers(HttpMethod.GET, "/displayMessages").hasRole("ADMIN")
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/closeMsg/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/assets/**").permitAll()
                         .anyRequest().authenticated()
@@ -52,7 +52,9 @@ public class SecurityConfig {
                 .exceptionHandling(configurer -> configurer.accessDeniedPage("/access-denied"))
                 .httpBasic(Customizer.withDefaults())
                 .csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.ignoringRequestMatchers(
-                        "/saveMsg").ignoringRequestMatchers("/public/createUser"));
+                                "/saveMsg").ignoringRequestMatchers("/public/createUser")
+                        .ignoringRequestMatchers("/admin/addNewClass")
+                        .ignoringRequestMatchers("/admin/addStudent"));
 
         return http.build();
     }
