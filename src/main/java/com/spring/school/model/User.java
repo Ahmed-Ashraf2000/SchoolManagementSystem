@@ -8,7 +8,9 @@ import jakarta.validation.constraints.*;
 import lombok.Data;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -82,4 +84,12 @@ public class User extends BaseEntity {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles = new HashSet<>();
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JoinTable(
+            name = "user_courses",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id")
+    )
+    private List<Course> courses = new ArrayList<>();
 }

@@ -46,8 +46,11 @@ public class ProfileService {
             User user = userRepository.findByUsername(authentication.getName())
                     .orElseThrow(() -> new RuntimeException("User not found: "));
             user.setEmail(profile.getEmail());
+            user.setConfirmEmail(profile.getEmail());
             user.setPhone(profile.getPhone());
             user.setUsername(profile.getUsername());
+            user.setPassword(user.getPassword());
+            user.setConfirmPassword(user.getPassword());
 
             Address address = user.getAddress();
             if (address == null) {
