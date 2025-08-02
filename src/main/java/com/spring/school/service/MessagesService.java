@@ -5,6 +5,10 @@ import com.spring.school.repository.MessagesRepository;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,8 +29,13 @@ public class MessagesService {
         messagesRepository.save(contact);
     }
 
-    public List<Contact> getAllOpenMessages() {
-        return messagesRepository.findByStatus(Contact.Status.OPEN);
+    public Page<Contact> getAllOpenMessages(String currentPage, String sortField, String sortDir) {
+        Sort sort = sortDir.equalsIgnoreCase("asc") ?
+                Sort.by(sortField).ascending() :
+                Sort.by(sortField).descending();
+
+        Pageable pageable = PageRequest.of(Integer.parseInt(currentPage) - 1, 5, sort);
+        return messagesRepository.findByStatus(Contact.Status.OPEN, pageable);
     }
 
     @Transactional

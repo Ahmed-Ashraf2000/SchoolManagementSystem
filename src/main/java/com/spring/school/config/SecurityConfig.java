@@ -29,7 +29,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/dashboard").authenticated()
                         .requestMatchers(HttpMethod.GET, "/displayProfile").authenticated()
                         .requestMatchers(HttpMethod.POST, "/updateProfile").authenticated()
-                        .requestMatchers(HttpMethod.GET, "/displayMessages").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/displayMessages/**").hasRole("ADMIN")
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/student/**").hasRole("STUDENT")
                         .requestMatchers(HttpMethod.GET, "/closeMsg/**").hasRole("ADMIN")
