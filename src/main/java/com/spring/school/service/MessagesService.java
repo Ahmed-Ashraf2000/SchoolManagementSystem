@@ -11,8 +11,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Slf4j
 @Service
 public class MessagesService {
@@ -40,13 +38,6 @@ public class MessagesService {
 
     @Transactional
     public void changeMessageStatus(int messageId) {
-        Contact contact = messagesRepository.findById(messageId)
-                .orElseThrow(() -> new RuntimeException("Message not found with id: " + messageId));
-
-        if (contact.getStatus() == Contact.Status.OPEN) {
-            contact.setStatus(Contact.Status.CLOSED);
-        }
-
-        messagesRepository.save(contact);
+        messagesRepository.updateStatusById(messageId, Contact.Status.CLOSED);
     }
 }
