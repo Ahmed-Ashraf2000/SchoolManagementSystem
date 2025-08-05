@@ -70,7 +70,7 @@ public class MessagesRestController {
 
             Map<String, String> errorResponse = new HashMap<>();
             errorResponse.put("error", "Failed to delete message: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+            return ResponseEntity.internalServerError().body(errorResponse);
         }
     }
 
@@ -109,7 +109,7 @@ public class MessagesRestController {
 
         } catch (Exception e) {
             log.error("Error updating message with ID: {}", id, e);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+            return ResponseEntity.internalServerError()
                     .body(Map.of("error", "Failed to update message: " + e.getMessage()));
         }
     }
