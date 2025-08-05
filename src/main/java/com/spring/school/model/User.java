@@ -1,5 +1,6 @@
 package com.spring.school.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.spring.school.annotation.FieldsValueMatch;
 import com.spring.school.annotation.PasswordValidator;
 import com.spring.school.validation.ValidationGroups;
@@ -62,6 +63,7 @@ public class User extends BaseEntity {
 
     @NotBlank(message = "Password is required")
     @PasswordValidator
+    @JsonIgnore
     @Column(name = "password")
     private String password;
 

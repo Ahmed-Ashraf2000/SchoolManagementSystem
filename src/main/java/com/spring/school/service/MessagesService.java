@@ -11,6 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Slf4j
 @Service
 public class MessagesService {
@@ -21,10 +23,13 @@ public class MessagesService {
         this.messagesRepository = messagesRepository;
     }
 
+    public List<Contact> getAllMessages() {
+        return messagesRepository.findAll();
+    }
+
     @Transactional
-    public void saveMessageDetails(Contact contact) {
-        log.info(String.valueOf(contact));
-        messagesRepository.save(contact);
+    public Contact saveMessageDetails(Contact contact) {
+        return messagesRepository.save(contact);
     }
 
     public Page<Contact> getAllOpenMessages(String currentPage, String sortField, String sortDir) {
@@ -39,5 +44,19 @@ public class MessagesService {
     @Transactional
     public void changeMessageStatus(int messageId) {
         messagesRepository.updateStatusById(messageId, Contact.Status.CLOSED);
+    }
+
+    public boolean existsById(int id) {
+        return messagesRepository.findById(id).isEmpty();
+    }
+
+    public Contact findById(int id) {
+        return messagesRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Message not found with id " + id));
+    }
+
+    @Transactional
+    public void deleteById(int id) {
+        messagesRepository.deleteById(id);
     }
 }

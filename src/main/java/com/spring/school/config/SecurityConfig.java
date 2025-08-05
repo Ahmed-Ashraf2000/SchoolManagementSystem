@@ -24,6 +24,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/courses").permitAll()
                         .requestMatchers(HttpMethod.GET, "/about").permitAll()
                         .requestMatchers("/public/**").permitAll()
+                        .requestMatchers("/api/**").authenticated()
                         .requestMatchers(HttpMethod.GET, "/login").permitAll()
                         .requestMatchers(HttpMethod.GET, "/logout").permitAll()
                         .requestMatchers(HttpMethod.GET, "/dashboard").authenticated()
@@ -58,6 +59,7 @@ public class SecurityConfig {
                         .ignoringRequestMatchers("/admin/addStudent")
                         .ignoringRequestMatchers("/admin/addNewCourse")
                         .ignoringRequestMatchers("/admin/addStudentToCourse")
+                        .ignoringRequestMatchers("/api/**")
                 );
 
         return http.build();

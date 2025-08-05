@@ -1,13 +1,16 @@
 package com.spring.school.controller;
 
 import com.spring.school.exception.UserNotFoundException;
+import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Controller;
 import org.springframework.transaction.TransactionSystemException;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
-@ControllerAdvice
+@ControllerAdvice(annotations = Controller.class)
+@Order(2)
 public class GlobalExceptionController {
 
     @ExceptionHandler(TransactionSystemException.class)
