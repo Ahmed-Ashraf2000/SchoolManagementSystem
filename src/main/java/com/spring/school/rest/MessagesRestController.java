@@ -5,6 +5,7 @@ import com.spring.school.service.MessagesService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -29,8 +30,28 @@ public class MessagesRestController {
     }
 
     @GetMapping
-    public List<Contact> getAllMessages() {
-        return messagesService.getAllMessages();
+    public Map<String, Object> getAllMessages() {
+        Map<String, Object> response = new HashMap<>();
+        List<Contact> contactList = messagesService.getAllMessages();
+
+        response.put("content", contactList);
+        response.put("total", contactList.size());
+
+        return response;
+    }
+
+    @GetMapping("/paginated")
+    public Map<String, Object> getAllMessagesWithPagination(
+            @RequestParam(name = "page", defaultValue = "1") String page,
+            @RequestParam(name = "field", defaultValue = "name") String field,
+            @RequestParam(name = "dir", defaultValue = "asc") String dir) {
+        Page<Contact> contactPage = messagesService.getAllOpenMessages(page, field, dir);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("content", contactPage.getContent());
+        response.put("total", 5);
+
+        return response;
     }
 
     @PostMapping
