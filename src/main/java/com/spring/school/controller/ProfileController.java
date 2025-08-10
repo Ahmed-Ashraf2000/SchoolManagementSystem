@@ -3,7 +3,6 @@ package com.spring.school.controller;
 import com.spring.school.model.Profile;
 import com.spring.school.service.ProfileService;
 import com.spring.school.validation.ValidationGroups;
-import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -17,7 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Slf4j
-@Controller
+@Controller("profileControllerBean")
 public class ProfileController {
     private final ProfileService profileService;
 

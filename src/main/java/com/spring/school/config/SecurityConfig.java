@@ -23,6 +23,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/saveMsg").permitAll()
                         .requestMatchers(HttpMethod.GET, "/courses").permitAll()
                         .requestMatchers(HttpMethod.GET, "/about").permitAll()
+                        .requestMatchers("/data-api/**").authenticated()
                         .requestMatchers("/public/**").permitAll()
                         .requestMatchers("/api/**").authenticated()
                         .requestMatchers(HttpMethod.GET, "/login").permitAll()
@@ -60,6 +61,7 @@ public class SecurityConfig {
                         .ignoringRequestMatchers("/admin/addNewCourse")
                         .ignoringRequestMatchers("/admin/addStudentToCourse")
                         .ignoringRequestMatchers("/api/**")
+                        .ignoringRequestMatchers("/data-api/**")
                 );
 
         return http.build();
