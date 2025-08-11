@@ -12,6 +12,7 @@
     <artifactId>SchoolManagementSystem</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>UniversityManagementSystem</name>
+    <packaging>jar</packaging>
     <description>UniversityManagementSystem</description>
     <url/>
     <licenses>

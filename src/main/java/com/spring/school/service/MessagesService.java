@@ -1,5 +1,6 @@
 package com.spring.school.service;
 
+import com.spring.school.config.PropsConfig;
 import com.spring.school.model.Contact;
 import com.spring.school.repository.MessagesRepository;
 import jakarta.transaction.Transactional;
@@ -17,10 +18,12 @@ import java.util.List;
 @Service
 public class MessagesService {
     private final MessagesRepository messagesRepository;
+    private final PropsConfig propsConfig;
 
     @Autowired
-    public MessagesService(MessagesRepository messagesRepository) {
+    public MessagesService(MessagesRepository messagesRepository, PropsConfig propsConfig) {
         this.messagesRepository = messagesRepository;
+        this.propsConfig = propsConfig;
     }
 
     public List<Contact> getAllMessages() {
@@ -37,7 +40,8 @@ public class MessagesService {
                 Sort.by(sortField).ascending() :
                 Sort.by(sortField).descending();
 
-        Pageable pageable = PageRequest.of(Integer.parseInt(currentPage) - 1, 5, sort);
+        Pageable pageable = PageRequest.of(Integer.parseInt(currentPage) - 1,
+                Integer.parseInt(propsConfig.getContact().get("pageSize")), sort);
         return messagesRepository.findByStatus(Contact.Status.OPEN, pageable);
     }
 

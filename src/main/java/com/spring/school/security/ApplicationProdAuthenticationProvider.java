@@ -3,6 +3,7 @@ package com.spring.school.security;
 import com.spring.school.model.User;
 import com.spring.school.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -17,14 +18,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class ApplicationAuthenticationProvider implements AuthenticationProvider {
+@Profile("prod")
+public class ApplicationProdAuthenticationProvider implements AuthenticationProvider {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public ApplicationAuthenticationProvider(UserRepository userRepository,
-                                             PasswordEncoder passwordEncoder) {
+    public ApplicationProdAuthenticationProvider(UserRepository userRepository,
+                                                 PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
