@@ -33,6 +33,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/updateProfile").authenticated()
                         .requestMatchers(HttpMethod.GET, "/displayMessages/**").hasRole("ADMIN")
                         .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/primeSchool/actuator/**").hasRole("ADMIN")
                         .requestMatchers("/student/**").hasRole("STUDENT")
                         .requestMatchers(HttpMethod.GET, "/closeMsg/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/assets/**").permitAll()
