@@ -86,10 +86,3 @@ Some of the available endpoints include:
 *   `/api/students`: For managing students.
 *   `/api/holidays`: For managing holidays.
 
-## Contributing
-
-Contributions are welcome! Please feel free to submit a pull request.
-
-## License
-
-This project is licensed under the MIT License. See the `LICENSE` file for details.
