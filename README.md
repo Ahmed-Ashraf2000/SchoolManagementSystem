@@ -44,7 +44,7 @@ This is a comprehensive web-based application for managing school operations, bu
 
 1.  **Clone the repository:**
     ```sh
-    git clone https://github.com/your-username/SchoolManagementSystem.git
+    git clone https://github.com/Ahmed-Ashraf2000/SchoolManagementSystem.git
     cd SchoolManagementSystem
     ```
 
