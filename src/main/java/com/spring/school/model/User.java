@@ -5,7 +5,10 @@ import com.spring.school.annotation.FieldsValueMatch;
 import com.spring.school.annotation.PasswordValidator;
 import com.spring.school.validation.ValidationGroups;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 

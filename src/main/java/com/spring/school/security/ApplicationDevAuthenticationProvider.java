@@ -2,7 +2,7 @@ package com.spring.school.security;
 
 import com.spring.school.model.User;
 import com.spring.school.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -17,15 +17,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
+@RequiredArgsConstructor
 @Profile("dev")
 public class ApplicationDevAuthenticationProvider implements AuthenticationProvider {
 
     private final UserRepository userRepository;
-
-    @Autowired
-    public ApplicationDevAuthenticationProvider(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 
     @Override
     public Authentication authenticate(Authentication authentication) throws

@@ -4,8 +4,8 @@ import com.spring.school.config.PropsConfig;
 import com.spring.school.model.Contact;
 import com.spring.school.repository.MessagesRepository;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -16,15 +16,10 @@ import java.util.List;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class MessagesService {
     private final MessagesRepository messagesRepository;
     private final PropsConfig propsConfig;
-
-    @Autowired
-    public MessagesService(MessagesRepository messagesRepository, PropsConfig propsConfig) {
-        this.messagesRepository = messagesRepository;
-        this.propsConfig = propsConfig;
-    }
 
     public List<Contact> getAllMessages() {
         return messagesRepository.findAll();

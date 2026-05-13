@@ -3,7 +3,7 @@ package com.spring.school.controller;
 import com.spring.school.model.Contact;
 import com.spring.school.service.MessagesService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,13 +13,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 public class MessagesController {
     private final MessagesService messagesService;
-
-    @Autowired
-    public MessagesController(MessagesService messagesService) {
-        this.messagesService = messagesService;
-    }
 
     @GetMapping("/displayMessages")
     public String displayFirstPage() {
