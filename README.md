@@ -357,51 +357,6 @@ The JAR file is configured as `primeschool-aws-deployment.jar` for easy AWS depl
 java -jar primeschool-aws-deployment.jar --spring.profiles.active=prod
 ```
 
-## Development Guidelines
-
-### Code Style
-
-- Follow Spring Boot best practices
-- Use consistent naming conventions (camelCase for variables, PascalCase for classes)
-- Add Javadoc for public APIs and complex methods
-- Keep classes focused and follow Single Responsibility Principle
-- Use dependency injection throughout (@Autowired, constructor injection)
-- Leverage Lombok annotations (@Data, @Slf4j, @RequiredArgsConstructor)
-
-### Entity Design
-
-- All entities should extend `BaseEntity` for audit trail functionality
-- Use proper JPA annotations (@Entity, @Table, @Column, @OneToMany, @ManyToOne)
-- Implement proper relationships and cascade configurations
-
-### Controller Structure
-
-- Use `@Controller` for web MVC endpoints
-- Use `@RestController` for API endpoints
-- Return `ResponseEntity` for API responses
-- Use proper HTTP status codes
-
-### Security
-
-- All sensitive endpoints should be protected with appropriate roles
-- Use `@PreAuthorize` or `@Secured` for method-level security
-- Never store sensitive data in logs
-- Implement proper CSRF protection
-
-### Database Migrations
-
-- Keep track of schema changes in version control
-- Use consistent migration strategies across environments
-- Test migrations on development before production
-
-## Logging
-
-Logs are configured in `src/main/resources/logback.xml`:
-
-- **Log File**: `logs/spring-boot-logger.log`
-- **Archived Logs**: `logs/archived/` (rotated daily)
-- **Log Level**: Configure in application properties via `logging.level.*`
-
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
